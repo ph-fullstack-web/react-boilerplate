@@ -16,10 +16,12 @@ export const Typography = ({
   switch (variant) {
     case 'h1':
       styles = {fontSize: '3rem', fontWeight: 'bold'};
-      break;
+      return <h1 style={{...styles, color}}>{children}</h1>;
+
     case 'h2':
       styles = {fontSize: '2.5rem', fontWeight: 'bold'};
-      break;
+      return <h2 style={{...styles, color}}>{children}</h2>;
+
     case 'h3':
       styles = {fontSize: '2rem', fontWeight: 'bold'};
       break;
