@@ -1,7 +1,8 @@
-import {ToDoItem} from '../../../models/business';
-import {ToDoListDataContextProps} from '../../../providers/ToDoListDataProvider/ToDoListDataContext';
-import {Typography, Button} from 'components/ui/atoms';
 import styled from 'styled-components';
+
+import {Typography, Button} from 'components/ui/atoms';
+import {ToDoItem} from 'models/business';
+import {ToDoListDataContextProps} from 'providers/ToDoListDataProvider/ToDoListDataContext';
 
 type TodoListTemplateProps = {
   addTodo: () => void;
