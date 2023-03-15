@@ -20,7 +20,7 @@ export const ToDoListDataProvider = ({children}: ToDoListDataProviderProps) => {
   ) => {
     try {
       dispatch({
-        type: ToDoListContextActionTypes.Update,
+        type: ToDoListContextActionTypes.Create,
         payload: {
           todoItem: newToDo,
         },
@@ -56,7 +56,7 @@ export const ToDoListDataProvider = ({children}: ToDoListDataProviderProps) => {
   ) => {
     try {
       dispatch({
-        type: ToDoListContextActionTypes.Update,
+        type: ToDoListContextActionTypes.Delete,
         payload: {
           deletedTitle: deletedTitle,
         },
