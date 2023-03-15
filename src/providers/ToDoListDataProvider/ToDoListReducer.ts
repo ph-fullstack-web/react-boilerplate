@@ -45,9 +45,8 @@ export const todoListReducer = (
       if (action.payload && action.payload.todoItem) {
         const newToDoList =
           state.todoList.filter(
-            todoItem => todoItem.title !== action.payload.todoItem!.title
+            todoItem => todoItem.id !== action.payload.todoItem!.id
           ) ?? [];
-
         newToDoList.push(action.payload.todoItem);
 
         return {
