@@ -1,12 +1,12 @@
+import styled from 'styled-components';
+import {Button, Typography} from 'components/ui/atoms';
 import {ToDoItem} from '../../../models/business';
 import {ToDoListDataContextProps} from '../../../providers/ToDoListDataProvider/ToDoListDataContext';
-import {Typography, Button} from 'components/ui/atoms';
-import styled from 'styled-components';
 
 type TodoListTemplateProps = {
   addTodo: () => void;
   updateTodo: ({title, assignedTo}: ToDoItem) => void;
-  deleteTodo: (title: string) => void;
+  deleteTodo: (id: number) => void;
   onChangeToDoTitle: (e: {target: {value: string}}) => void;
   onChangeToDoAssignedTo: (e: {target: {value: string}}) => void;
   inputValue: ToDoItem | undefined;
@@ -101,7 +101,7 @@ export const ToDoListTemplate = ({
             <Button
               variant="delete"
               text="Delete"
-              onClick={() => todo.title && deleteTodo(todo.title)}
+              onClick={() => todo.id && deleteTodo(todo.id)}
             />
           </Li>
         ))}

@@ -16,7 +16,7 @@ export interface ToDoListDataContextProps {
       onFailure: () => void
     ) => void;
     deleteToDoItem: (
-      title: string,
+      id: number,
       onSuccess: () => void,
       onFailure: () => void
     ) => void;
