@@ -1,5 +1,5 @@
 import {ToDoItem} from 'models/business';
-import React, {useReducer} from 'react';
+import {useReducer} from 'react';
 
 import {ToDoListDataContext} from './ToDoListDataContext';
 import {
@@ -50,7 +50,7 @@ export const ToDoListDataProvider = ({children}: ToDoListDataProviderProps) => {
   };
 
   const handleDeleteToDoItem = (
-    deletedTitle: string,
+    deletedId: number,
     onSuccess: () => void,
     onFailure: () => void
   ) => {
@@ -58,7 +58,7 @@ export const ToDoListDataProvider = ({children}: ToDoListDataProviderProps) => {
       dispatch({
         type: ToDoListContextActionTypes.Delete,
         payload: {
-          deletedTitle: deletedTitle,
+          deletedId: deletedId,
         },
       });
       onSuccess();

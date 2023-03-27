@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {useToDoListDataProvider} from '../../../providers/ToDoListDataProvider';
 import {ToDoItem} from '../../../models/business';
 
-import {ToDoListTemplate} from './ToDoListTemplate';
+import {ToDoListTemplate} from '../../templates/TodoList/ToDoListTemplate';
 
 export const ToDoList = () => {
   const [inputValue, setInputValue] = useState<ToDoItem>({
@@ -59,8 +59,8 @@ export const ToDoList = () => {
     });
   };
 
-  const deleteTodo = (title: string) => {
-    todoList.actions.deleteToDoItem(title, onSuccess, onFailure);
+  const deleteTodo = (id: number) => {
+    todoList.actions.deleteToDoItem(id, onSuccess, onFailure);
   };
 
   return (

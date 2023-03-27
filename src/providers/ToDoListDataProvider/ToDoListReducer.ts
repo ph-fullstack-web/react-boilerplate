@@ -7,7 +7,7 @@ export interface ToDoListContextState {
 export interface ToDoListContextPayload {
   todoList?: ToDoItem[];
   todoItem?: ToDoItem;
-  deletedTitle?: string;
+  deletedId?: number;
 }
 
 export enum ToDoListContextActionTypes {
@@ -59,10 +59,10 @@ export const todoListReducer = (
     }
 
     case ToDoListContextActionTypes.Delete: {
-      if (action.payload && action.payload.deletedTitle) {
+      if (action.payload && action.payload.deletedId) {
         const newToDoList =
           state.todoList.filter(
-            todoItem => todoItem.title !== action.payload.deletedTitle
+            todoItem => todoItem.id !== action.payload.deletedId
           ) ?? [];
 
         return {
