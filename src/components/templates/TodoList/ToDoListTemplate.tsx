@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import {Button, Typography} from 'components/ui/atoms';
+import {Avatar, Input, List, Typography as Antypography} from 'antd';
 import {ToDoItem} from '../../../models/business';
 import {ToDoListDataContextProps} from '../../../providers/ToDoListDataProvider/ToDoListDataContext';
+import {UserOutlined} from '@ant-design/icons';
 
+const {Text} = Antypography;
 type TodoListTemplateProps = {
   addTodo: () => void;
   updateTodo: ({title, assignedTo}: ToDoItem) => void;
@@ -13,27 +16,14 @@ type TodoListTemplateProps = {
   todoList: ToDoListDataContextProps;
 };
 
-const Ol = styled('ol')({
-  listStyle: 'none',
-  padding: 0,
-  margin: 0,
-});
-
-const Li = styled('li')({
-  display: 'flex',
-  alignItems: 'center',
-  padding: '10px',
-  marginBottom: '10px',
-  backgroundColor: '#f5f5f5',
-  borderRadius: '5px',
-  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-  transition: 'all 0.2s ease',
-  justifyContent: 'space-around',
-  ':hover': {
-    transform: 'scale(1.05)',
-    boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
-  },
-});
+const listStyle: React.CSSProperties = {
+  width: '90%',
+  textAlign: 'left',
+  margin: '16px auto',
+  border: '1px solid rgba(5, 5, 5, 0.06)',
+  padding: 8,
+  borderRadius: 10,
+};
 
 export const ToDoListTemplate = ({
   addTodo,
@@ -45,7 +35,7 @@ export const ToDoListTemplate = ({
   todoList,
 }: TodoListTemplateProps) => {
   return (
-    <div>
+    <div style={{marginTop: '0.5em'}}>
       <Typography variant="h1">Todo List</Typography>
       <div
         style={{
@@ -54,58 +44,68 @@ export const ToDoListTemplate = ({
           justifyContent: 'space-evenly',
           width: '100vw',
           maxWidth: '650px',
+          margin: 'auto',
         }}
       >
         <div>
-          <label>
-            Title:
-            <input
-              type="text"
-              value={inputValue?.title}
-              onChange={onChangeToDoTitle}
-            />
-          </label>
+          <Input
+            type="text"
+            value={inputValue?.title}
+            onChange={onChangeToDoTitle}
+            placeholder="Title"
+          />
         </div>
 
         <div>
-          <label>
-            Assigned to:
-            <input
-              type="text"
-              value={inputValue?.assignedTo}
-              onChange={onChangeToDoAssignedTo}
-            />
-          </label>
+          <Input
+            type="text"
+            value={inputValue?.assignedTo}
+            onChange={onChangeToDoAssignedTo}
+            placeholder="assign to"
+          />
         </div>
 
         <Button variant="add" text="Add Todo" onClick={addTodo} />
       </div>
-      <Ol>
-        {todoList?.todoList?.map(todo => (
-          <Li style={{textAlign: 'left'}} key={todo.title}>
-            <Typography variant="body1">{todo.title}</Typography>
-            <br />
-            <Typography variant="body2">{todo.assignedTo}</Typography>
-            <Button
-              variant="update"
-              text="Update"
-              onClick={() =>
-                todo.title &&
-                updateTodo({
-                  id: todo.id,
-                  title: inputValue?.title || '',
-                  assignedTo: inputValue?.assignedTo || '',
-                })
-              }
-            />
-            <Button
-              variant="delete"
-              text="Delete"
-              onClick={() => todo.id && deleteTodo(todo.id)}
-            />
-          </Li>
-        ))}
-      </Ol>
+      <List
+        itemLayout="horizontal"
+        dataSource={todoList?.todoList}
+        style={listStyle}
+        renderItem={item => (
+          <>
+            <List.Item>
+              <List.Item.Meta
+                avatar={
+                  <Avatar
+                    style={{backgroundColor: '#87d068'}}
+                    src={<UserOutlined />}
+                  />
+                }
+                title={<a href="https://ant.design">{item.title}</a>}
+                description={item.assignedTo}
+              />
+              <Button
+                variant="update"
+                text="Update"
+                onClick={() =>
+                  item.title &&
+                  updateTodo({
+                    id: item.id,
+                    title: inputValue?.title || '',
+                    assignedTo: inputValue?.assignedTo || '',
+                  })
+                }
+                marginRight="10px"
+              />
+              <Button
+                variant="delete"
+                text="Delete"
+                onClick={() => item.id && deleteTodo(item.id)}
+              />
+            </List.Item>
+          </>
+        )}
+      />
     </div>
   );
 };

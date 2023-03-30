@@ -7,9 +7,7 @@ export const TechStack = () => {
         <ViteLink />
         <ReactLink />
       </div>
-      <Typography variant="h1" color="white">
-        Vite + React
-      </Typography>
+      <Typography variant="h1">Vite + React</Typography>
     </div>
   );
 };

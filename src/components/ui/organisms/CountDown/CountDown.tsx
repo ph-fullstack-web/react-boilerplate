@@ -1,3 +1,5 @@
+import {Button} from 'antd';
+
 type CountDownProps = {
   count: number;
   onIncreaseCount: () => void;
@@ -6,7 +8,7 @@ type CountDownProps = {
 export const CountDown = ({count, onIncreaseCount}: CountDownProps) => {
   return (
     <div className="card">
-      <button onClick={onIncreaseCount}>count is {count}</button>
+      <Button onClick={onIncreaseCount}>count is {count}</Button>
       <p>
         Edit <code>src/App.tsx</code> and save to test HMR
       </p>

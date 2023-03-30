@@ -15,7 +15,7 @@ export const WelcomeTemplate = ({
       <TechStack />
       <CountDown count={count} onIncreaseCount={onIncreaseCount} />
       <p className="read-the-docs">
-        <Typography variant="body1" color="white">
+        <Typography variant="body1">
           Click on the Vite and React logos to learn more
         </Typography>
       </p>
